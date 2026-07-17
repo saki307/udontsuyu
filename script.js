@@ -43,8 +43,10 @@ function renderEntrance() {
       <div class="noren-wrap" role="list">
         ${GENRES.map((g) => `
           <button class="noren" role="listitem" data-genre="${g.id}" style="background:${g.color}">
-            <span class="noren-kanji">${g.vertical}</span>
-            <span class="noren-count">${g.recipes.length}品</span>
+            <span class="noren-inner">
+              <span class="noren-kanji">${g.vertical}</span>
+              <span class="noren-count">${g.recipes.length}品</span>
+            </span>
           </button>
         `).join("")}
       </div>

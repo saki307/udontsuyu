@@ -1,1 +1,374 @@
+:root {
+  --kaki: #E8622C;
+  --kaki-deep: #B8481C;
+  --kaki-pale: #F7D9C4;
+  --cream: #FFFBF5;
+  --white: #FFFFFF;
+  --ink: #2B2420;
+  --ink-soft: #6B5D52;
+  --shadow: 0 8px 24px rgba(184, 72, 28, 0.12);
+  --font-display: "Shippori Mincho", "Noto Serif CJK JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-body: "Zen Kaku Gothic New", "Noto Sans CJK JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- 共通ヘッダー ---------- */
+.top-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 20px;
+  background: var(--white);
+  border-bottom: 1px solid var(--kaki-pale);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.back-btn {
+  background: none;
+  border: 1.5px solid var(--kaki);
+  color: var(--kaki-deep);
+  border-radius: 999px;
+  width: 38px;
+  height: 38px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+}
+.back-btn:hover { background: var(--kaki); color: var(--white); }
+.back-btn:focus-visible, .noren:focus-visible, .recipe-card:focus-visible {
+  outline: 3px solid var(--kaki-deep);
+  outline-offset: 2px;
+}
+
+.top-bar h1 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+.top-bar .sub {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-top: 2px;
+}
+
+/* ---------- 入り口画面（暖簾） ---------- */
+.entrance {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 20px 64px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(232, 98, 44, 0.10), transparent 55%),
+    var(--cream);
+}
+
+.entrance-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.entrance-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  color: var(--kaki-deep);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.entrance-title {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.entrance-title span {
+  color: var(--kaki);
+}
+.entrance-tagline {
+  margin-top: 12px;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.noren-rail {
+  width: 100%;
+  max-width: 720px;
+  background: var(--ink);
+  border-radius: 6px 6px 0 0;
+  height: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.noren-wrap {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  gap: 3px;
+  filter: drop-shadow(0 14px 20px rgba(43, 36, 32, 0.18));
+}
+
+.noren {
+  flex: 1;
+  min-width: 0;
+  background: var(--kaki);
+  border: none;
+  border-radius: 0 0 10px 10px;
+  padding: 30px 8px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 300px;
+  position: relative;
+  color: var(--white);
+  transition: transform 0.25s cubic-bezier(.2,.8,.2,1), height 0.25s ease;
+  transform-origin: top center;
+}
+.noren::before {
+  /* 暖簾の切れ込み */
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 1px;
+  height: 34px;
+  background: rgba(255,255,255,0.35);
+  transform: translateX(-50%);
+}
+.noren:hover, .noren:focus-visible {
+  transform: translateY(6px) rotate(0.3deg);
+  height: 316px;
+}
+.noren:nth-child(odd):hover { transform: translateY(6px) rotate(-0.3deg); }
+
+.noren-kanji {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.5;
+}
+
+.noren-count {
+  font-size: 11px;
+  background: rgba(255,255,255,0.22);
+  border-radius: 999px;
+  padding: 3px 10px;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- ジャンル別レシピ一覧 ---------- */
+.genre-screen { flex: 1; display: flex; flex-direction: column; }
+.genre-hero {
+  padding: 28px 20px 22px;
+  background: var(--kaki);
+  color: var(--white);
+}
+.genre-hero .kicker {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  opacity: 0.85;
+  margin-bottom: 6px;
+}
+.genre-hero h2 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  margin: 0 0 6px;
+}
+.genre-hero p { margin: 0; font-size: 13px; opacity: 0.9; }
+
+.recipe-list {
+  padding: 20px;
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  flex: 1;
+}
+
+.recipe-card {
+  background: var(--white);
+  border: 1px solid var(--kaki-pale);
+  border-radius: 14px;
+  padding: 18px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: var(--shadow);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.recipe-card:hover { transform: translateY(-2px); border-color: var(--kaki); }
+
+.recipe-card .rc-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.recipe-card .rc-sub { font-size: 12.5px; color: var(--ink-soft); }
+.recipe-card .rc-meta {
+  margin-top: 6px;
+  display: flex;
+  gap: 10px;
+  font-size: 11px;
+  color: var(--kaki-deep);
+}
+.rc-meta span { display: flex; align-items: center; gap: 4px; }
+
+/* ---------- レシピ詳細 ---------- */
+.recipe-screen { flex: 1; padding-bottom: 40px; }
+.recipe-hero {
+  padding: 26px 20px 24px;
+  background: linear-gradient(135deg, var(--kaki), var(--kaki-deep));
+  color: var(--white);
+}
+.recipe-hero .kicker { font-size: 11px; letter-spacing: 0.2em; opacity: 0.85; }
+.recipe-hero h2 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  margin: 8px 0 4px;
+}
+.recipe-hero .rh-sub { font-size: 13px; opacity: 0.92; margin-bottom: 12px; }
+.recipe-hero .rh-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+}
+
+.recipe-body { padding: 22px 20px; max-width: 640px; margin: 0 auto; }
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--kaki-deep);
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--kaki-pale);
+}
+
+.ingredient-list {
+  list-style: none;
+  margin: 0 0 30px;
+  padding: 0;
+  background: var(--white);
+  border: 1px solid var(--kaki-pale);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.ingredient-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 11px 16px;
+  font-size: 14px;
+}
+.ingredient-list li:not(:last-child) { border-bottom: 1px dashed var(--kaki-pale); }
+.ingredient-list .ing-amount { color: var(--kaki-deep); font-weight: 700; }
+
+.step-list {
+  list-style: none;
+  margin: 0 0 26px;
+  padding: 0;
+  counter-reset: step;
+}
+.step-list li {
+  counter-increment: step;
+  position: relative;
+  padding: 4px 0 20px 40px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.step-list li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--kaki);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.step-list li::after {
+  content: "";
+  position: absolute;
+  left: 13px;
+  top: 28px;
+  bottom: 0;
+  width: 1px;
+  background: var(--kaki-pale);
+}
+.step-list li:last-child::after { display: none; }
+
+.point-box {
+  background: var(--kaki-pale);
+  border-radius: 12px;
+  padding: 16px 18px;
+  font-size: 13px;
+  color: var(--ink);
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.point-box .point-label {
+  font-weight: 700;
+  color: var(--kaki-deep);
+  flex-shrink: 0;
+}
+
+footer.app-footer {
+  text-align: center;
+  padding: 18px;
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+
+/* ---------- レスポンシブ ---------- */
+@media (max-width: 600px) {
+  .entrance-title { font-size: 30px; }
+  .noren-kanji { font-size: 17px; }
+  .noren { height: 240px; padding: 22px 4px 16px; }
+  .noren:hover, .noren:focus-visible { height: 254px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .noren, .recipe-card { transition: none; }
+}
 

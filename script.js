@@ -67,7 +67,7 @@ function renderGenre(genre) {
       </div>
     </div>
     <div class="genre-screen">
-      <div class="genre-hero" style="background:${genre.color}">
+      <div class="genre-hero" style="background-image: linear-gradient(160deg, rgba(20,10,5,0.25), rgba(20,10,5,0.62)), url('${genre.image}')">
         <div class="kicker">GENRE</div>
         <h2>${genre.name}</h2>
         <p>${genre.lead}</p>
@@ -75,11 +75,14 @@ function renderGenre(genre) {
       <div class="recipe-list">
         ${genre.recipes.map((r) => `
           <button class="recipe-card" data-recipe="${r.id}">
-            <div class="rc-title">${r.title}</div>
-            <div class="rc-sub">${r.subtitle}</div>
-            <div class="rc-meta">
-              <span>👥 ${r.servings}</span>
-              <span>⏱ ${r.time}</span>
+            <img class="rc-thumb" src="${r.image || genre.image}" alt="${r.title}" loading="lazy">
+            <div class="rc-body">
+              <div class="rc-title">${r.title}</div>
+              <div class="rc-sub">${r.subtitle}</div>
+              <div class="rc-meta">
+                <span>👥 ${r.servings}</span>
+                <span>⏱ ${r.time}</span>
+              </div>
             </div>
           </button>
         `).join("")}
@@ -102,7 +105,7 @@ function renderRecipe(genre, recipe) {
       </div>
     </div>
     <div class="recipe-screen">
-      <div class="recipe-hero" style="background:linear-gradient(135deg, ${genre.color}, var(--kaki-deep))">
+      <div class="recipe-hero" style="background-image: linear-gradient(135deg, rgba(20,10,5,0.25), rgba(20,10,5,0.62)), url('${recipe.image || genre.image}')">
         <div class="kicker">${genre.name.toUpperCase()}</div>
         <h2>${recipe.title}</h2>
         <div class="rh-sub">${recipe.subtitle}</div>

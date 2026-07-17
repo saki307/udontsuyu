@@ -1,5 +1,5 @@
 // レシピデータ ------------------------------------------------------------
-//  が考案したうどん・そうめんのつゆレシピ集。
+// Claude が考案したうどん・そうめんのつゆレシピ集。
 // 4つのジャンルに分類し、各ジャンルに3レシピを収録。
 
 const GENRES = [
@@ -10,6 +10,7 @@ const GENRES = [
     vertical: "基本のだし",
     lead: "何度でも仕込みたい、つゆの土台",
     color: "#E8622C",
+    image: "images/kiho.svg",
     recipes: [
       {
         id: "edomae-kaeshi",
@@ -86,6 +87,7 @@ const GENRES = [
     vertical: "冷たいつゆ",
     lead: "ざるうどん・そうめんに合う、きりっと冷たい一杯",
     color: "#D9531E",
+    image: "images/hiyashi.svg",
     recipes: [
       {
         id: "kihon-hiyashi-soumen",
@@ -158,6 +160,7 @@ const GENRES = [
     vertical: "温かいつゆ",
     lead: "かけうどんにじんわり染みる、体温まる一杯",
     color: "#C94518",
+    image: "images/atatakai.svg",
     recipes: [
       {
         id: "sanuki",
@@ -232,6 +235,7 @@ const GENRES = [
     vertical: "アレンジつゆ",
     lead: "いつもと違う気分の日に、遊び心のある一杯",
     color: "#B8481C",
+    image: "images/arrange.svg",
     recipes: [
       {
         id: "goma-tantan",
@@ -239,6 +243,7 @@ const GENRES = [
         subtitle: "コクと辛みで満足感のある一杯",
         servings: "2人分",
         time: "15分",
+        image: "images/tantan-udon-2.jpg",
         ingredients: [
           { name: "だし汁", amount: "400ml" },
           { name: "白練りごま", amount: "大さじ3" },
@@ -261,6 +266,7 @@ const GENRES = [
         subtitle: "香りで満腹感、体もぽかぽかに",
         servings: "2人分",
         time: "15分",
+        image: "images/curry-udon.jpg",
         ingredients: [
           { name: "だし汁", amount: "500ml" },
           { name: "カレー粉", amount: "大さじ1" },
@@ -282,6 +288,7 @@ const GENRES = [
         subtitle: "北海道風のこってり仕立て",
         servings: "2人分",
         time: "15分",
+        image: "images/miso-butter-udon.jpg",
         ingredients: [
           { name: "だし汁", amount: "500ml" },
           { name: "味噌", amount: "大さじ2と1/2" },
@@ -303,6 +310,7 @@ const GENRES = [
         subtitle: "洋風うどん専門店風のまろやかな一杯",
         servings: "2人分",
         time: "15分",
+        image: "images/mentaiko-cream-udon.jpg",
         ingredients: [
           { name: "だし汁", amount: "300ml" },
           { name: "生クリーム", amount: "150ml" },
@@ -324,6 +332,7 @@ const GENRES = [
         subtitle: "卵黄とチーズでとろりと濃厚に",
         servings: "2人分",
         time: "15分",
+        image: "images/carbonara-udon.jpg",
         ingredients: [
           { name: "だし汁", amount: "300ml" },
           { name: "牛乳", amount: "150ml" },
@@ -346,6 +355,7 @@ const GENRES = [
         subtitle: "洋風だしで楽しむさっぱり濃厚",
         servings: "2人分",
         time: "20分",
+        image: "images/tomato-cheese-udon.jpg",
         ingredients: [
           { name: "だし汁", amount: "300ml" },
           { name: "トマト缶（カット）", amount: "200g" },
@@ -367,6 +377,7 @@ const GENRES = [
         subtitle: "韓国風のスタミナ満点つゆ",
         servings: "2人分",
         time: "20分",
+        image: "images/yukejang-udon.jpg",
         ingredients: [
           { name: "だし汁", amount: "500ml" },
           { name: "コチュジャン", amount: "大さじ1と1/2" },
@@ -389,6 +400,7 @@ const GENRES = [
         subtitle: "爽やかな酸味とコクのバランス",
         servings: "2人分",
         time: "10分",
+        image: "images/lemon-butter-udon.jpg",
         ingredients: [
           { name: "だし汁", amount: "400ml" },
           { name: "薄口醤油", amount: "大さじ2" },
